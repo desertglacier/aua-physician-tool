@@ -89,24 +89,72 @@ export const BEHAVIOR_RESPONSIVENESS = {
 export const DURATION_NUMBER = {
   "stable>3months": 1,
   "stable<3months": 2,
-  "ongoing": 3,
+  ongoing: 3,
 };
 
 export const CODE_RECOMMENDATIONS = {
-  0: "Likely inappropriate. No behaviors identifed. Trial taper of AP",
-  11: "Likely inappropriate. Trial non-pharmacological approaches. Trial taper of AP.",
-  12: "Likely inappropriate. Trial non-pharmacological approaches. Trial taper of AP.",
-  13: "Likely inappropriate. Trial non-pharmacological approaches. Trial taper of AP.",
-  21: "Possibly inappropriate. Trial non-pharmacological approaches. Trial taper of AP. Consider alternative medications.",
-  22: "Possibly inappropriate. Trial non-pharmacological approaches. Trial taper of AP. Consider alternative medications.",
-  23: "Possibly inappropriate. Trial non-pharmacological approaches. Trial taper of AP. Consider alternative medications.",
-  31: "Possibly appropriate. Trial non-pharmacological approaches. Trial taper of AP. Consider Geriatric Psychiatry referral.",
-  32: "Possibly appropriate. Trial non-pharmacological approaches. Continue AP. Consider Geriatric Psychiatry referral to review potential tapering.",
-  33: "Possibly appropriate. Trial non-pharmacological approaches. Continue AP. Consider Geriatric Psychiatry referral to review potential tapering.",
-  99: "Likely inappropriate. No behaviors identifed. Trial taper of AP.",
-  O: "Likely appropriate. Continue AP.",
-  P: "Likely appropriate. Continue AP.",
-  PN: "Likely appropriate. Continue AP. Consider Geriatric Psychiatry referral to review potential tapering.",
-  ON: "Likely appropriate. Continue AP. Consider Geriatric Psychiatry referral to review potential tapering.",
-  W: "No AP prescribed.",
+  0: {
+    msg: "Likely inappropriate. No behaviors identifed. Trial taper of AP",
+    danger: 1,
+  },
+  11: {
+    msg: "Likely inappropriate. Trial non-pharmacological approaches. Trial taper of AP.",
+    danger: 1,
+  },
+  12: {
+    msg: "Likely inappropriate. Trial non-pharmacological approaches. Trial taper of AP.",
+    danger: 1,
+  },
+  13: {
+    msg: "Likely inappropriate. Trial non-pharmacological approaches. Trial taper of AP.",
+    danger: 1,
+  },
+  21: {
+    msg: "Possibly inappropriate. Trial non-pharmacological approaches. Trial taper of AP. Consider alternative medications.",
+    danger: 2,
+  },
+  22: {
+    msg: "Possibly inappropriate. Trial non-pharmacological approaches. Trial taper of AP. Consider alternative medications.",
+    danger: 2,
+  },
+  23: {
+    msg: "Possibly inappropriate. Trial non-pharmacological approaches. Trial taper of AP. Consider alternative medications.",
+    danger: 2,
+  },
+  31: {
+    msg: "Possibly appropriate. Trial non-pharmacological approaches. Trial taper of AP. Consider Geriatric Psychiatry referral.",
+    danger: 3,
+  },
+  32: {
+    msg: "Possibly appropriate. Trial non-pharmacological approaches. Continue AP. Consider Geriatric Psychiatry referral to review potential tapering.",
+    danger: 3,
+  },
+  33: {
+    msg: "Possibly appropriate. Trial non-pharmacological approaches. Continue AP. Consider Geriatric Psychiatry referral to review potential tapering.",
+    danger: 3,
+  },
+  99: {
+    msg: "Likely inappropriate. No behaviors identifed. Trial taper of AP.",
+    danger: 1,
+  },
+  O: {
+    msg: "Likely appropriate. Continue AP.",
+    danger: 4,
+  },
+  P: {
+    msg: "Likely appropriate. Continue AP.",
+    danger: 4,
+  },
+  PN: {
+    msg: "Likely appropriate. Continue AP. Consider Geriatric Psychiatry referral to review potential tapering.",
+    danger: 4,
+  },
+  ON: {
+    msg: "Likely appropriate. Continue AP. Consider Geriatric Psychiatry referral to review potential tapering.",
+    danger: 4,
+  },
+  W: {
+    msg: "No AP prescribed.",
+    danger: 4,
+  },
 };

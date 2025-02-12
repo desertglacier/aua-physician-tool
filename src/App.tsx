@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { PlusIcon, TrashIcon } from "@radix-ui/react-icons";
+import React, { useState } from "react";
 import "./App.css";
-import { getRecommendation } from "./recommender/init";
 import {
   BEHAVIOR_RESPONSIVENESS,
   DURATION_NUMBER,
 } from "./recommender/constants";
-import React from "react";
+import { getRecommendation } from "./recommender/init";
 
 type BehaviorInput = {
   type: string;
@@ -20,18 +20,26 @@ const defaultBehaviorInput = {
 function App() {
   const pmhxRef = React.useRef<HTMLTextAreaElement>(null);
   const medsRef = React.useRef<HTMLTextAreaElement>(null);
-  const [recommendation, setRecommendation] = useState<string>("");
+  const recommendationRef = React.useRef<HTMLDivElement>(null);
+  const [recommendation, setRecommendation] = useState<{
+    msg: string;
+    danger: 4;
+  }>({ msg: "", danger: 4 });
 
   const [behaviorInputs, setBehaviorInputs] = useState<BehaviorInput[]>([
     defaultBehaviorInput,
   ]);
 
   const addBehaviorInput = () => {
-    setBehaviorInputs((prev) => [...prev, defaultBehaviorInput]);
+    setBehaviorInputs(prev => [...prev, defaultBehaviorInput]);
   };
 
   const removeBehaviorInput = (index: number) => {
-    setBehaviorInputs((prev) => prev.filter((_, i) => i !== index));
+    if (behaviorInputs.length === 1) {
+      setBehaviorInputs([defaultBehaviorInput]);
+    } else {
+      setBehaviorInputs(prev => prev.filter((_, i) => i !== index));
+    }
   };
 
   const updateBehaviorInput = ({
@@ -69,6 +77,7 @@ function App() {
     };
 
     setRecommendation(getRecommendation(userInput));
+    recommendationRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
@@ -88,37 +97,38 @@ function App() {
             {behaviorInputs.map((input, index) => (
               <div className="InputListItem">
                 <select
-                  onChange={(e) => {
+                  onChange={e => {
                     console.log(e);
                     updateBehaviorInput({ index, type: e.target.value });
                   }}
                   value={input.type}
                 >
-                  {Object.keys(BEHAVIOR_RESPONSIVENESS).map((behavior) => (
+                  {Object.keys(BEHAVIOR_RESPONSIVENESS).map(behavior => (
                     <option>{behavior}</option>
                   ))}
                 </select>
                 <select
-                  onChange={(e) => {
+                  onChange={e => {
                     console.log(e);
                     updateBehaviorInput({ index, duration: e.target.value });
                   }}
                   value={input.duration}
                 >
-                  {Object.keys(DURATION_NUMBER).map((behavior) => (
+                  {Object.keys(DURATION_NUMBER).map(behavior => (
                     <option>{behavior}</option>
                   ))}
                 </select>
                 <button
-                  className="SecondaryCta"
+                  className="GhostCta"
                   onClick={() => removeBehaviorInput(index)}
+                  disabled={index === 0 && behaviorInputs.length === 1}
                 >
-                  -
+                  <TrashIcon />
                 </button>
               </div>
             ))}
             <button className="SecondaryCta" onClick={addBehaviorInput}>
-              +
+              <PlusIcon />
             </button>
           </div>
         </div>
@@ -126,39 +136,16 @@ function App() {
       <button className="PrimaryCta" onClick={onClick}>
         Get Recommendation
       </button>
-      {recommendation && <div className="Result">{recommendation}</div>}
+      {recommendation.msg ? (
+        <div className={`Result Danger${recommendation.danger}`}>
+          {recommendation.msg}
+        </div>
+      ) : (
+        <div className="ResultPlaceholder" />
+      )}
+      <div ref={recommendationRef} className="ScrollThreshold" />
     </div>
   );
 }
 
 export default App;
-
-// window.getRecommendation = getRecommendation;
-// window.getAppropriatenessCode = getAppropriatenessCode;
-// window.getDxCode = getDxCode;
-// window.getApCode = getApCode;
-// window.userInput = {
-//   pmhx: `
-// Major neurocognitive disorder
-// Hypertension
-// Dyslipidemia
-//     `,
-//   meds: `
-// Atorvastatin 40 mg qHS
-// Ramipril 5 mg qAM
-// Quetiapine 50 mg QHS`,
-//   behaviors: [
-//     {
-//       type: "wandering",
-//       duration: "3-ongoing",
-//     },
-//     {
-//       type: "spitting",
-//       duration: "3-ongoing",
-//     },
-//     {
-//       type: "insomnia",
-//       duration: "3-ongoing",
-//     },
-//   ],
-// };
