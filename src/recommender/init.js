@@ -24,15 +24,15 @@ function getCode(input, mapping, fallback) {
   return code;
 }
 
-export function getDxCode(userInput) {
+function getDxCode(userInput) {
   return getCode(userInput.pmhx, DIAGNOSES_CATEGORY, "X");
 }
 
-export function getApCode(userInput) {
+function getApCode(userInput) {
   return getCode(userInput.meds, ANTIPSYCHOTICS_CATEGORY, "W");
 }
 
-export function getAppropriatenessCode(userInput) {
+function getAppropriatenessCode(userInput) {
   const results = userInput.behaviors.map(behavior => {
     const responsiveness = BEHAVIOR_RESPONSIVENESS[behavior.type];
     const durationNumber = DURATION_NUMBER[behavior.duration];

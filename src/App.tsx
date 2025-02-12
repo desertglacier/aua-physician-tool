@@ -1,11 +1,6 @@
 import { useState } from "react";
 import "./App.css";
-import {
-  getApCode,
-  getAppropriatenessCode,
-  getDxCode,
-  getRecommendation,
-} from "./recommender/init";
+import { getRecommendation } from "./recommender/init";
 import {
   BEHAVIOR_RESPONSIVENESS,
   DURATION_NUMBER,
@@ -138,32 +133,32 @@ function App() {
 
 export default App;
 
-window.getRecommendation = getRecommendation;
-window.getAppropriatenessCode = getAppropriatenessCode;
-window.getDxCode = getDxCode;
-window.getApCode = getApCode;
-window.userInput = {
-  pmhx: `
-Major neurocognitive disorder
-Hypertension
-Dyslipidemia
-    `,
-  meds: `
-Atorvastatin 40 mg qHS
-Ramipril 5 mg qAM
-Quetiapine 50 mg QHS`,
-  behaviors: [
-    {
-      type: "wandering",
-      duration: "3-ongoing",
-    },
-    {
-      type: "spitting",
-      duration: "3-ongoing",
-    },
-    {
-      type: "insomnia",
-      duration: "3-ongoing",
-    },
-  ],
-};
+// window.getRecommendation = getRecommendation;
+// window.getAppropriatenessCode = getAppropriatenessCode;
+// window.getDxCode = getDxCode;
+// window.getApCode = getApCode;
+// window.userInput = {
+//   pmhx: `
+// Major neurocognitive disorder
+// Hypertension
+// Dyslipidemia
+//     `,
+//   meds: `
+// Atorvastatin 40 mg qHS
+// Ramipril 5 mg qAM
+// Quetiapine 50 mg QHS`,
+//   behaviors: [
+//     {
+//       type: "wandering",
+//       duration: "3-ongoing",
+//     },
+//     {
+//       type: "spitting",
+//       duration: "3-ongoing",
+//     },
+//     {
+//       type: "insomnia",
+//       duration: "3-ongoing",
+//     },
+//   ],
+// };
