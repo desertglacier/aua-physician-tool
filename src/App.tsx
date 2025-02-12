@@ -7,24 +7,32 @@ import {
 } from "./recommender/constants";
 import { getRecommendation } from "./recommender/init";
 
+type Recommendation = {
+  msg: string;
+  danger: number;
+};
+
+const BEHAVIOR_KEYS = Object.keys(BEHAVIOR_RESPONSIVENESS).sort();
+const DURATION_KEYS = Object.keys(DURATION_NUMBER);
+
 type BehaviorInput = {
   type: string;
   duration: string;
 };
 
 const defaultBehaviorInput = {
-  type: Object.keys(BEHAVIOR_RESPONSIVENESS)[0],
-  duration: Object.keys(DURATION_NUMBER)[0],
+  type: BEHAVIOR_KEYS[0],
+  duration: DURATION_KEYS[0],
 };
 
 function App() {
   const pmhxRef = React.useRef<HTMLTextAreaElement>(null);
   const medsRef = React.useRef<HTMLTextAreaElement>(null);
   const recommendationRef = React.useRef<HTMLDivElement>(null);
-  const [recommendation, setRecommendation] = useState<{
-    msg: string;
-    danger: 4;
-  }>({ msg: "", danger: 4 });
+  const [recommendation, setRecommendation] = useState<Recommendation>({
+    msg: "",
+    danger: 4,
+  });
 
   const [behaviorInputs, setBehaviorInputs] = useState<BehaviorInput[]>([
     defaultBehaviorInput,
@@ -98,23 +106,21 @@ function App() {
               <div className="InputListItem">
                 <select
                   onChange={e => {
-                    console.log(e);
                     updateBehaviorInput({ index, type: e.target.value });
                   }}
                   value={input.type}
                 >
-                  {Object.keys(BEHAVIOR_RESPONSIVENESS).map(behavior => (
+                  {BEHAVIOR_KEYS.map(behavior => (
                     <option>{behavior}</option>
                   ))}
                 </select>
                 <select
                   onChange={e => {
-                    console.log(e);
                     updateBehaviorInput({ index, duration: e.target.value });
                   }}
                   value={input.duration}
                 >
-                  {Object.keys(DURATION_NUMBER).map(behavior => (
+                  {DURATION_KEYS.map(behavior => (
                     <option>{behavior}</option>
                   ))}
                 </select>
