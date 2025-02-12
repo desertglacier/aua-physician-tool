@@ -87,9 +87,9 @@ export const BEHAVIOR_RESPONSIVENESS = {
 };
 
 export const DURATION_NUMBER = {
-  "1-stable>3months": 1,
-  "2-stable<3months": 2,
-  "3-ongoing": 3,
+  "stable>3months": 1,
+  "stable<3months": 2,
+  "ongoing": 3,
 };
 
 export const CODE_RECOMMENDATIONS = {
