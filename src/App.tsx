@@ -5,7 +5,7 @@ import {
   BEHAVIOR_RESPONSIVENESS,
   DURATION_NUMBER,
 } from "./recommender/constants";
-import { getRecommendation } from "./recommender/init";
+import { getRecommendation } from "./recommender/recommender";
 
 type Recommendation = {
   msg: string;
