@@ -154,7 +154,7 @@ export const CODE_RECOMMENDATIONS = {
     danger: 4,
   },
   W: {
-    msg: "No AP prescribed.",
+    msg: "No AP prescribed. Do nothing.",
     danger: 4,
   },
 };
