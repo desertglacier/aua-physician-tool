@@ -40,15 +40,13 @@ function getAppropriatenessCode(userInput) {
     return 10 * responsiveness + durationNumber + 10;
   });
 
-  console.log('qwer.results', results)
-
   return Math.max(...results).toString();
 }
 
 /**
- * The getRecommendation is the entry point into this file. 
- * You can change the internals of the function, but ensure 
- * the parameter and the return object have the same structure.
+ * The getRecommendation function is the entry point into this file. 
+ * You can change the internals of the function, but ensure the parameter 
+ * and the return object have the same structure as defined here:
  * 
  * @param {{
  *     pmhx: string | undefined;
@@ -86,8 +84,6 @@ export function getRecommendation(userInput) {
   const apCode = getApCode(userInput);
   const dxCode = getDxCode(userInput);
   const appropriatenessCode = getAppropriatenessCode(userInput);
-
-  console.log(apCode, dxCode, appropriatenessCode)
 
   return (
     CODE_RECOMMENDATIONS[apCode] ??
