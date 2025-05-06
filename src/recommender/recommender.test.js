@@ -16,12 +16,36 @@ test('Likely appropriate. Continue AP.', () => {
                 duration: "ongoing"
             },
             {
-                type: "insomina",
+                type: "insomnia",
                 duration: "ongoing"
             },
         ]
     }
 
     const result = getRecommendation(userInput)
-    expect(result).toBe(CODE_RECOMMENDATIONS.PN)
+    expect(result).toEqual(CODE_RECOMMENDATIONS.PN)
+});
+
+test('Likely inappropriate. Trial taper of AP.', () => {
+    const userInput = {
+        pmhx: "Major neurocognitive disorder\nHypertension\nDyslipidemia",
+        meds: "Atorvastatin 40 mg qHS\nRamipril 5 mg qAM\nQuetiapine 50 mg QHS",
+        behaviors: [
+            {
+                type: "wandering",
+                duration: "ongoing"
+            },
+            {
+                type: "spitting",
+                duration: "ongoing"
+            },
+            {
+                type: "insomnia",
+                duration: "ongoing"
+            },
+        ]
+    }
+
+    const result = getRecommendation(userInput)
+    expect(result).toEqual(CODE_RECOMMENDATIONS[11])
 });
